@@ -45,28 +45,101 @@ export default class App extends React.Component {
 
       address:"",
       phone:"",
-      email:""
+      email:"",
+
+      nameMMRequire:false,
+      nameEnRequire:false,
+
+      fnameMMRequire:false,
+      fnameEnRequire:false,
+
+      nrcMMRequired:false,
+      nrcEnRequired:false,
+
     };
   }
 
   onChangeText = (key, val) => {
-    this.setState({ [key]: val });
+
+    if(key=='nameMM'){
+      this.setState({
+        nameMMRequire:false,
+        [key]: val
+      })
+    }else if(key=='nameEn'){
+      this.setState({
+        nameEnRequire:false,
+        [key]: val
+      })
+    }else if(key=='fnameMM'){
+      this.setState({
+        fnameMMRequire:false,
+        [key]: val
+      })
+    }else if(key=='fnameEn'){
+      this.setState({
+        fnameEnRequire:false,
+        [key]: val
+      })
+    }else if(key=='nrcNoMM' || key=='nrcStateMM'){
+      this.setState({
+        nrcMMRequired:false,
+        [key]: val
+      })
+    }else if(key=='nrcNoEN' || key=='nrcStateEN'){
+      this.setState({
+        nrcEnRequired:false,
+        [key]: val
+      })
+    }else{
+      this.setState({
+        [key]: val
+      })
+    }
+    
   };
   signUp = async () => {
     const myObjStr = JSON.stringify(this.state);
-    if (
-      this.state.nameMM != "" &&
-      this.state.nameEn != "" &&
-      this.state.nrcMM != "" &&
-      this.state.nrcEn != ""
-    ) {
-      // here place your signup logic
-      alert("User successfully signed up!");
-      // console.log("user successfully signed up!: ",this.state);
-      this.clearState();
-    } else {
-      alert("Please fill all the required field!");
+
+    if(this.state.nameMM==''){
+      this.setState({
+        nameMMRequire:true
+        
+      });
+    } 
+    if(this.state.nameEn==''){
+      this.setState({
+        nameEnRequire:true
+      });
+    } 
+    if(this.state.fnameMM==''){
+      this.setState({
+        fnameMMRequire:true
+      });
+    } 
+    if(this.state.fnameEn==''){
+      this.setState({
+        fnameEnRequire:true
+      });
+    } 
+    if(this.state.nrcNoMM==''){
+      this.setState({
+        nrcMMRequired:true
+      });
+    } 
+    if(this.state.nrcNoEN==''){
+      this.setState({
+        nrcEnRequired:true
+      });
     }
+
+    
+    if(this.state.nameMM!='' && this.state.nameEn!='' && this.state.fnameMM!='' && this.state.fnameEn!=''){
+      alert("User successfully signed up!");
+      this.clearState();
+    }
+      
+    
   };
 
   clearState() {
@@ -100,13 +173,10 @@ export default class App extends React.Component {
 
       address:"",
       phone:"",
-      email:""
+      email:"",
     });
   }
 
-  toggleSwitch = value => {
-    this.setState({ switchValue: value });
-  };
 
   render() {
     var tshArr = [
@@ -177,17 +247,27 @@ export default class App extends React.Component {
                 </View>
                 <Text style={styles.label}>လုပ်ငန်းရှင်အမည် *</Text>
                 <TextInput
-                  style={styles.input}
+                  style={[styles.input, ]}
                   value={this.state.nameMM}
                   onChangeText={val => this.onChangeText("nameMM", val)}
                   placeholder={"မြန်မာလိုထည့်ပါ"}
                 />
+                {
+                  this.state.nameMMRequire?(
+                    <Text style={styles.require}>လုပ်ငန်းရှင်အမည် (မြန်မာ)ထည့်ပါ</Text>
+                  ):null
+                }
                 <TextInput
                   style={styles.input}
                   value={this.state.nameEn}
                   onChangeText={val => this.onChangeText("nameEn", val)}
                   placeholder={"အင်္ဂလိပ်လိုထည့်ပါ"}
                 />
+                {
+                  this.state.nameEnRequire?(
+                    <Text style={styles.require}>လုပ်ငန်းရှင်အမည် (အင်္ဂလိပ်)ထည့်ပါ</Text>
+                  ):null
+                }
 
                 <Text style={styles.label}>နိုင်ငံသားစီစစ်ရေးကဒ်အမှတ် *</Text>
                 <View style={{ flex:1, flexDirection:"row",}}>
@@ -251,8 +331,17 @@ export default class App extends React.Component {
                       placeholder={"၁၁၁၁၁၁"}
                     />
                   </View>
+
+                  
                   
                 </View>
+                {
+                    this.state.nrcMMRequired?(
+                      <View style={{ flex:1, flexDirection:"row",}}>
+                        <Text style={styles.require}>နိုင်ငံသားစီစစ်ရေးကဒ်အမှတ် (မြန်မာ)ထည့်ပါ</Text>
+                      </View>
+                    ):null
+                }
                 <View style={{ flex:1, flexDirection:"row",}}>
                   <View  style={{  width:'15%', marginRight:5}}>
                     <Picker
@@ -316,7 +405,14 @@ export default class App extends React.Component {
                   </View>
                   
                 </View>
-                
+                {
+                    this.state.nrcEnRequired?(
+                      <View style={{ flex:1, flexDirection:"row",}}>
+                        <Text style={styles.require}>နိုင်ငံသားစီစစ်ရေးကဒ်အမှတ် (အင်္ဂလိပ်)ထည့်ပါ</Text>
+                      </View>
+                    ):null
+                }
+
                 <Text style={styles.label}>အဖအမည် *</Text>
                 <TextInput
                   style={styles.input}
@@ -324,12 +420,22 @@ export default class App extends React.Component {
                   onChangeText={val => this.onChangeText("fnameMM", val)}
                   placeholder={"မြန်မာလိုထည့်ပါ"}
                 />
+                {
+                  this.state.fnameMMRequire?(
+                    <Text style={styles.require}>အဖအမည် (မြန်မာ)ထည့်ပါ</Text>
+                  ):null
+                }
                 <TextInput
                   style={styles.input}
                   value={this.state.fnameEn}
                   onChangeText={val => this.onChangeText("fnameEn", val)}
                   placeholder={"အင်္ဂလိပ်လိုထည့်ပါ"}
                 />
+                {
+                  this.state.fnameEnRequire?(
+                    <Text style={styles.require}>အဖအမည် (အင်္ဂလိပ်)ထည့်ပါ</Text>
+                  ):null
+                }
 
                 <Text style={styles.label}>လူမျိုး</Text>
                 <TextInput
@@ -388,7 +494,7 @@ export default class App extends React.Component {
 
                 />
 
-                <Text style={styles.label}>ဖုန်းနံပါတ်</Text>
+                <Text style={styles.label}>ဖုန်းနံပါတ် *</Text>
                 <TextInput
                   style={styles.input}
                   value={this.state.phone}
@@ -396,7 +502,7 @@ export default class App extends React.Component {
                   keyboardType="phone-pad"
                 />
 
-                <Text style={styles.label}>Email</Text>
+                <Text style={styles.label}>Email *</Text>
                 <TextInput
                   style={styles.input}
                   value={this.state.email}
@@ -405,7 +511,7 @@ export default class App extends React.Component {
                 />
 
                 <TouchableOpacity style={styles.signUpBtn} onPress={this.signUp}>
-                  <Text style={styles.signUpTxt}>Sign Up</Text>
+                  <Text style={styles.signUpTxt}>Register</Text>
                 </TouchableOpacity>
               </View>
           </ScrollView>
@@ -446,7 +552,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#f0f0f0",
     borderWidth: 3,
     borderRadius: 5,
-    marginBottom: 10
+    marginBottom: 10,
+    textAlign:"center"
   },
   genderView: {
     flexDirection: "row",
@@ -460,5 +567,11 @@ const styles = StyleSheet.create({
   signUpTxt: {
     textAlign: "center",
     padding: 10
+  },
+  require:{
+    fontSize:12,
+    color:'red',
+    marginBottom:15,
+    marginLeft:5
   }
 });
