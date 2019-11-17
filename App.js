@@ -53,8 +53,10 @@ export default class App extends React.Component {
       fnameMMRequire:false,
       fnameEnRequire:false,
 
-      nrcMMRequired:false,
-      nrcEnRequired:false,
+      nrcStateMMRequired:false,
+      nrcNoMMRequired:false,
+      nrcStateEnRequired:false,
+      nrcNoEnRequired:false,
 
     };
   }
@@ -81,14 +83,24 @@ export default class App extends React.Component {
         fnameEnRequire:false,
         [key]: val
       })
-    }else if(key=='nrcNoMM' || key=='nrcStateMM'){
+    }else if(key=='nrcStateMM'){
       this.setState({
-        nrcMMRequired:false,
+        nrcStateMMRequired:false,
         [key]: val
       })
-    }else if(key=='nrcNoEN' || key=='nrcStateEN'){
+    }else if(key=='nrcNoMM'){
       this.setState({
-        nrcEnRequired:false,
+        nrcNoMMRequired:false,
+        [key]: val
+      })
+    }else if(key=='nrcStateEN'){
+      this.setState({
+        nrcStateEnRequired:false,
+        [key]: val
+      })
+    }else if(key=='nrcNoEN'){
+      this.setState({
+        nrcNoEnRequired:false,
         [key]: val
       })
     }else{
@@ -109,13 +121,22 @@ export default class App extends React.Component {
       this.setState({
         nameEnRequire:true
       });
+    }else if(this.state.nrcStateMM==''){
+      this.setState({
+        nrcStateMMRequired:true,
+      });
     }else if(this.state.nrcNoMM==''){
       this.setState({
-        nrcMMRequired:true
+        nrcNoMMRequired:true,
+      });
+    }else if(this.state.nrcStateEN==''){
+      this.setState({
+        nrcStateEnRequired:true,
+       
       });
     }else if(this.state.nrcNoEN==''){
       this.setState({
-        nrcEnRequired:true
+        nrcNoEnRequired:true,
       });
     }else if(this.state.fnameMM==''){
       this.setState({
@@ -306,7 +327,7 @@ export default class App extends React.Component {
                   </View>
                   <View style={{ width:'25%', marginRight:5}}>
                     <TextInput
-                      style={[styles.input,this.state.nrcMMRequired ? {borderColor:'#b34'}:null ]}
+                      style={[styles.input,this.state.nrcStateMMRequired ? {borderColor:'#b34'}:null ]}
                       value={this.state.nrcStateMM}
                       onChangeText={val => this.onChangeText("nrcStateMM", val)}
                       placeholder={"ပမန"}
@@ -336,7 +357,7 @@ export default class App extends React.Component {
                   </View>
                   <View  style={{ width:'40%'}}>
                       <TextInput
-                      style={[styles.input,this.state.nrcMMRequired ? {borderColor:'#b34'}:null ]}
+                      style={[styles.input,this.state.nrcNoMMRequired ? {borderColor:'#b34'}:null ]}
                       value={this.state.nrcNoMM}
                       onChangeText={val => this.onChangeText("nrcNoMM", val)}
                       placeholder={"၁၁၁၁၁၁"} 
@@ -347,9 +368,9 @@ export default class App extends React.Component {
                   
                 </View>
                 {
-                    this.state.nrcMMRequired?(
+                    (this.state.nrcStateMMRequired || this.state.nrcNoMMRequired )?(
                       <View style={{ flex:1, flexDirection:"row",}}>
-                        <Text style={styles.require}>နိုင်ငံသားစီစစ်ရေးကဒ်အမှတ် (မြန်မာ)ထည့်ပါ</Text>
+                        <Text style={styles.require}>နိုင်ငံသားစီစစ်ရေးကဒ်အမှတ် (မြန်မာ)မှန်ကန်စွာဖြည့်သွင်းပါ</Text>
                       </View>
                     ):null
                 }
@@ -378,7 +399,7 @@ export default class App extends React.Component {
                   </View>
                   <View style={{  width:'25%', marginRight:5}}>
                     <TextInput
-                      style={[styles.input,this.state.nrcEnRequired ? {borderColor:'#b34'}:null ]}
+                      style={[styles.input,this.state.nrcStateEnRequired ? {borderColor:'#b34'}:null ]}
                       value={this.state.nrcStateEN}
                       onChangeText={val => this.onChangeText("nrcStateEN", val)}
                       placeholder={"PaMaNa"}
@@ -408,7 +429,7 @@ export default class App extends React.Component {
                   </View>
                   <View  style={{ width:'40%'}}>
                       <TextInput
-                      style={[styles.input,this.state.nrcEnRequired ? {borderColor:'#b34'}:null ]}
+                      style={[styles.input,this.state.nrcNoEnRequired ? {borderColor:'#b34'}:null ]}
                       value={this.state.nrcNoEN}
                       onChangeText={val => this.onChangeText("nrcNoEN", val)}
                       placeholder={"111111"}
@@ -418,9 +439,9 @@ export default class App extends React.Component {
                   
                 </View>
                 {
-                    this.state.nrcEnRequired?(
+                    (this.state.nrcStateEnRequired || this.state.nrcNoEnRequired)?(
                       <View style={{ flex:1, flexDirection:"row",}}>
-                        <Text style={styles.require}>နိုင်ငံသားစီစစ်ရေးကဒ်အမှတ် (အင်္ဂလိပ်)ထည့်ပါ</Text>
+                        <Text style={styles.require}>နိုင်ငံသားစီစစ်ရေးကဒ်အမှတ် (အင်္ဂလိပ်) မှန်ကန်စွာဖြည့်သွင်းပါ</Text>
                       </View>
                     ):null
                 }
