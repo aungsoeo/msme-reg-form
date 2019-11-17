@@ -11,6 +11,8 @@ import {
   ScrollView
 } from "react-native";
 
+import RadioBtn from "./components/RadioBtn";
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -469,6 +471,18 @@ export default class App extends React.Component {
                     <Text style={styles.require}>အဖအမည် (အင်္ဂလိပ်)ထည့်ပါ</Text>
                   ):null
                 }
+                <Text style={styles.label}>ကျား/မ</Text>
+                <View style={styles.genderContainer}>
+                  <RadioBtn
+                    label="ကျား"
+                    active={this.state.selectedData == "Male" ? true : false}
+                    onPress={() => this.setState({  selectedData: "Male" })}
+                  />
+                  <RadioBtn 
+                  label="မ"
+                    active={this.state.selectedData == "Female" ? true : false}
+                    onPress={() => this.setState({  selectedData: "Female" })} />
+                </View>
 
                 <Text style={styles.label}>လူမျိုး</Text>
                 <TextInput
@@ -608,5 +622,13 @@ const styles = StyleSheet.create({
     color:'#b34',
     marginBottom:15,
     marginLeft:5
+  },
+  genderContainer:{
+    flex: 1,
+    flexDirection: "row",
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    marginBottom:10
   }
 });
