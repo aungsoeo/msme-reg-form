@@ -104,40 +104,37 @@ export default class App extends React.Component {
     if(this.state.nameMM==''){
       this.setState({
         nameMMRequire:true
-        
       });
-    } 
-    if(this.state.nameEn==''){
+    }else if(this.state.nameEn==''){
       this.setState({
         nameEnRequire:true
       });
-    } 
-    if(this.state.fnameMM==''){
-      this.setState({
-        fnameMMRequire:true
-      });
-    } 
-    if(this.state.fnameEn==''){
-      this.setState({
-        fnameEnRequire:true
-      });
-    } 
-    if(this.state.nrcNoMM==''){
+    }else if(this.state.nrcNoMM==''){
       this.setState({
         nrcMMRequired:true
       });
-    } 
-    if(this.state.nrcNoEN==''){
+    }else if(this.state.nrcNoEN==''){
       this.setState({
         nrcEnRequired:true
       });
-    }
-
-    
-    if(this.state.nameMM!='' && this.state.nameEn!='' && this.state.fnameMM!='' && this.state.fnameEn!=''){
+    }else if(this.state.fnameMM==''){
+      this.setState({
+        fnameMMRequire:true
+      });
+    }else if(this.state.fnameEn==''){
+      this.setState({
+        fnameEnRequire:true
+      });
+    }else{
       alert("User successfully signed up!");
       this.clearState();
     }
+
+    
+    // if(this.state.nameMM!='' && this.state.nameEn!='' && this.state.fnameMM!='' && this.state.fnameEn!=''){
+    //   alert("User successfully signed up!");
+    //   this.clearState();
+    // }
       
     
   };
@@ -401,6 +398,7 @@ export default class App extends React.Component {
                       value={this.state.nrcNoEN}
                       onChangeText={val => this.onChangeText("nrcNoEN", val)}
                       placeholder={"111111"}
+                      keyboardType="number-pad"
                     />
                   </View>
                   
@@ -446,6 +444,7 @@ export default class App extends React.Component {
                 <Text style={styles.label}>ကိုးကွယ်သည့်ဘာသာ</Text>
                 <TextInput
                   style={styles.input}
+                  placeholder="dd/mm/yy"
                   value={this.state.religion}
                   onChangeText={val => this.onChangeText("religion", val)}
                 />
@@ -527,7 +526,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff"
   },
   formContainer: {
-    marginTop: 50,
+    marginVertical: 50,
     marginHorizontal: 30,
     justifyContent: "center",
     alignContent: "center"
