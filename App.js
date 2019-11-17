@@ -247,7 +247,7 @@ export default class App extends React.Component {
                 </View>
                 <Text style={styles.label}>လုပ်ငန်းရှင်အမည် *</Text>
                 <TextInput
-                  style={[styles.input, ]}
+                  style={[styles.input,this.state.nameMMRequire ? {borderColor:'#b34'}:null ]}
                   value={this.state.nameMM}
                   onChangeText={val => this.onChangeText("nameMM", val)}
                   placeholder={"မြန်မာလိုထည့်ပါ"}
@@ -258,7 +258,7 @@ export default class App extends React.Component {
                   ):null
                 }
                 <TextInput
-                  style={styles.input}
+                  style={[styles.input,this.state.nameEnRequire ? {borderColor:'#b34'}:null ]}
                   value={this.state.nameEn}
                   onChangeText={val => this.onChangeText("nameEn", val)}
                   placeholder={"အင်္ဂလိပ်လိုထည့်ပါ"}
@@ -295,7 +295,7 @@ export default class App extends React.Component {
                   </View>
                   <View style={{ width:'25%', marginRight:5}}>
                     <TextInput
-                      style={styles.input}
+                      style={[styles.input,this.state.nrcMMRequired ? {borderColor:'#b34'}:null ]}
                       value={this.state.nrcStateMM}
                       onChangeText={val => this.onChangeText("nrcStateMM", val)}
                       placeholder={"ပမန"}
@@ -325,7 +325,7 @@ export default class App extends React.Component {
                   </View>
                   <View  style={{ width:'40%'}}>
                       <TextInput
-                      style={styles.input}
+                      style={[styles.input,this.state.nrcMMRequired ? {borderColor:'#b34'}:null ]}
                       value={this.state.nrcNoMM}
                       onChangeText={val => this.onChangeText("nrcNoMM", val)}
                       placeholder={"၁၁၁၁၁၁"}
@@ -367,7 +367,7 @@ export default class App extends React.Component {
                   </View>
                   <View style={{  width:'25%', marginRight:5}}>
                     <TextInput
-                      style={styles.input}
+                      style={[styles.input,this.state.nrcEnRequired ? {borderColor:'#b34'}:null ]}
                       value={this.state.nrcStateEN}
                       onChangeText={val => this.onChangeText("nrcStateEN", val)}
                       placeholder={"PaMaNa"}
@@ -397,7 +397,7 @@ export default class App extends React.Component {
                   </View>
                   <View  style={{ width:'40%'}}>
                       <TextInput
-                      style={styles.input}
+                      style={[styles.input,this.state.nrcEnRequired ? {borderColor:'#b34'}:null ]}
                       value={this.state.nrcNoEN}
                       onChangeText={val => this.onChangeText("nrcNoEN", val)}
                       placeholder={"111111"}
@@ -415,7 +415,7 @@ export default class App extends React.Component {
 
                 <Text style={styles.label}>အဖအမည် *</Text>
                 <TextInput
-                  style={styles.input}
+                  style={[styles.input,this.state.fnameMMRequire ? {borderColor:'#b34'}:null ]}
                   value={this.state.fnameMM}
                   onChangeText={val => this.onChangeText("fnameMM", val)}
                   placeholder={"မြန်မာလိုထည့်ပါ"}
@@ -426,7 +426,7 @@ export default class App extends React.Component {
                   ):null
                 }
                 <TextInput
-                  style={styles.input}
+                  style={[styles.input,this.state.fnameEnRequire ? {borderColor:'#b34'}:null ]}
                   value={this.state.fnameEn}
                   onChangeText={val => this.onChangeText("fnameEn", val)}
                   placeholder={"အင်္ဂလိပ်လိုထည့်ပါ"}
@@ -542,7 +542,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     padding: 8,
     borderColor: "#999",
-    borderWidth: 2,
+    borderWidth: 1,
     borderRadius: 5,
     fontSize: 14,
   },
@@ -566,11 +566,12 @@ const styles = StyleSheet.create({
   },
   signUpTxt: {
     textAlign: "center",
-    padding: 10
+    padding: 10,
+    color:'#fff'
   },
   require:{
     fontSize:12,
-    color:'red',
+    color:'#b34',
     marginBottom:15,
     marginLeft:5
   }
