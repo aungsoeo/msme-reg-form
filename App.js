@@ -242,6 +242,20 @@ export default class App extends React.Component {
                 <View style={{ flex:1, justifyContent:'center', alignItems:'center', marginBottom:20 }}>
                   <Image source={require('./assets/msme.png')} />
                 </View>
+
+                <View style={{ flex:1, justifyContent:'center', alignItems:'center', marginBottom:10 }}>
+                  <Text style={{ textAlign:"center", fontSize: 18, fontWeight:'bold', color:'#3c3'}}>Membership Sign Up</Text>
+                </View>
+                <View
+                  style={{
+                    height: 1,
+                    width: "98%",
+                    paddingHorizontal: 10,
+                    backgroundColor: "#3c3",
+                    marginBottom:10
+                  }}
+                />
+               
                 <Text style={styles.label}>လုပ်ငန်းရှင်အမည် *</Text>
                 <TextInput
                   style={[styles.input,this.state.nameMMRequire ? {borderColor:'#b34'}:null ]}
@@ -325,7 +339,7 @@ export default class App extends React.Component {
                       style={[styles.input,this.state.nrcMMRequired ? {borderColor:'#b34'}:null ]}
                       value={this.state.nrcNoMM}
                       onChangeText={val => this.onChangeText("nrcNoMM", val)}
-                      placeholder={"၁၁၁၁၁၁"}
+                      placeholder={"၁၁၁၁၁၁"} 
                     />
                   </View>
 
