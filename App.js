@@ -493,7 +493,6 @@ export default class App extends React.Component {
                 <Text style={styles.label}>ကိုးကွယ်သည့်ဘာသာ</Text>
                 <TextInput
                   style={styles.input}
-                  placeholder="dd/mm/yy"
                   value={this.state.religion}
                   onChangeText={val => this.onChangeText("religion", val)}
                 />
@@ -507,6 +506,7 @@ export default class App extends React.Component {
                 <Text style={styles.label}>မွေးသက္ကရာဇ် *</Text>
                 <TextInput
                   style={styles.input}
+                  placeholder="dd/mm/yy"
                   value={this.state.dob}
                   onChangeText={val => this.onChangeText("dob", val)}
                 />
